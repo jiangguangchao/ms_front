@@ -4,7 +4,7 @@
       <el-form class="login_form" ref="loginForm" :model="loginForm">
 <!--        用户名-->
         <el-form-item >
-          <el-input v-model="loginForm.userName" prefix-icon="el-icon-user-solid" placeholder="请输入用户名" >
+          <el-input v-model="loginForm.userId" prefix-icon="el-icon-user-solid" placeholder="请输入用户名" >
           </el-input>
         </el-form-item>
 
@@ -29,17 +29,22 @@ export default {
   data() {
     return {
       loginForm: {
-        userName: '',
+        userId: '',
         password: ''
       }
     }
   },
   methods: {
     async toLogin(){
-      const {data:res} =await this.$http. post("login22")
-      console.log(res);
+      const {data:res} =await this.$http. post("login",this.loginForm)
+      if (res != 'success') {
+        this.$message.error(res)
+        return;
+      }
+      this.$message.info("登录成功")
       window.sessionStorage.setItem("user","admin");
       this.$router.push("/home");
+
     },
     toReset: function () {
       console.log('toReset');
