@@ -10,7 +10,7 @@ import axios from 'axios'
 
 Vue.use(ElementUI)
 Vue.prototype.$http = axios
-axios.default.baseURL = "http://localhost:8090"
+axios.defaults.baseURL = "http://localhost:8090"
 
 
 

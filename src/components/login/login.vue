@@ -35,11 +35,11 @@ export default {
     }
   },
   methods: {
-    toLogin(){
-      this.$http.post("/login");
-      console.log('login success');
-       window.sessionStorage.setItem("user","admin");
-       this.$router.push("/home");
+    async toLogin(){
+      const {data:res} =await this.$http. post("login22")
+      console.log(res);
+      window.sessionStorage.setItem("user","admin");
+      this.$router.push("/home");
     },
     toReset: function () {
       console.log('toReset');
