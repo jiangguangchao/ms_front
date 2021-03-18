@@ -107,7 +107,7 @@ export default {
         return;
       }
       this.$message.success("订单修改成功")
-      this.$router.push({path: '/home/order'})
+      this.$router.push({path: '/container/forder'})
     }
   },
   created() {

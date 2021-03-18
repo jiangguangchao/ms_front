@@ -43,7 +43,7 @@ export default {
       }
       this.$message.info("登录成功")
       window.sessionStorage.setItem("user","admin");
-      this.$router.push("/home");
+      this.$router.push("/container/home");
 
     },
     toReset: function () {
