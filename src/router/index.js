@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import login from '../components/login/login'
 import home from '../components/home/home'
 import order from '../components/order/order'
+import orderDetail from "../components/order/orderDetail";
+import modifyOrder from "../components/order/modifyOrder";
 
 Vue.use(Router)
 
@@ -23,6 +25,14 @@ export default new Router({
         {
           path: 'order',
           component: order
+        },
+        {
+          path: 'order/detail/:orderId',
+          component: orderDetail
+        },
+        {
+          path: 'order/modify/:orderId',
+          component: modifyOrder
         }
       ]
     }
