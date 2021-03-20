@@ -3,7 +3,7 @@
 <template>
   <div class="over-view">
     <el-card>
-      <div style="background:rgb(116 122 142);padding:20px">今日总览</div>
+      <div class="today">今日总览</div>
       <el-row>
         <el-col :span="12">今日订单数</el-col>
         <el-col :span="12">今日营业额</el-col>
@@ -13,6 +13,8 @@
         <el-col :span="12">12323</el-col>
       </el-row>
     </el-card>
+
+    <div id="todayecharts" ></div>
   </div>
 </template>
 
@@ -22,8 +24,33 @@
       return {}
     },
     methods: {
+      showTodayEcharts() {
+        let myChart = this.$echarts.init(document.getElementById('todayecharts'));
+        let option = {
+          title: {
+            text: '今日订单'
+          },
+          tooltip: {},
+          legend: {
+            data:['销量','金额']
+          },
+          xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+          },
+          yAxis: {},
+          series: [{
 
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+          }]
+        }
+        myChart.setOption(option)
+      }
+    },
+    mounted() {
+      this.showTodayEcharts();
     }
+
   }
 </script>
 
@@ -37,5 +64,14 @@
   }
   .el-card__body{
     padding:0;
+  }
+
+  .today {
+    background:rgb(116 122 142);
+    padding:20px;
+  }
+  #todayecharts {
+    width: 600px;
+    height: 400px ;
   }
 </style>
