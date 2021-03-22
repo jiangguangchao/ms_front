@@ -101,7 +101,7 @@ export default {
     async findOrderDetail() {
       const orderId = this.$route.params.orderId;
       console.log(orderId);
-      const {data:res} = await this.$http.get("forder/detail/" + orderId)
+      const {data:res} = await this.$http.get("order/detail/" + orderId)
 
       if (res.code != '00') {
         this.$message.error(res.message)

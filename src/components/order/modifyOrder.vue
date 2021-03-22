@@ -90,7 +90,7 @@ export default {
     async findOrderDetail() {
       const orderId = this.$route.params.orderId;
       console.log(orderId);
-      const {data:res} = await this.$http.get("forder/detail/" + orderId)
+      const {data:res} = await this.$http.get("order/detail/" + orderId)
 
       if (res.code != '00') {
         this.$message.error(res.message)
@@ -101,13 +101,13 @@ export default {
     },
 
     async modifyOrder() {
-      const {data:res} = await this.$http.post("forder/modify", this.order)
+      const {data:res} = await this.$http.post("order/modify", this.order)
       if (res.code != '00') {
         this.$message.error(res.message)
         return;
       }
       this.$message.success("订单修改成功")
-      this.$router.push({path: '/container/forder'})
+      this.$router.push({path: '/container/om/order'})
     }
   },
   created() {

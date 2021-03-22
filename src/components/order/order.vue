@@ -177,7 +177,7 @@
 
       //初始化页面订单查询
       async order(){
-        const {data:res} =await this.$http. get("forder",)
+        const {data:res} =await this.$http. get("order",)
         if (res.code != '00') {
           this.$message.error(res.message);
           return;
@@ -190,7 +190,7 @@
       //根据查询条件查询订单
       async queryOrder() {
         console.log("查询订单")
-        const {data:res} =await this.$http. post("forder/query", this.orderQuery)
+        const {data:res} =await this.$http. post("order/query", this.orderQuery)
         if (res.code != '00') {
           this.$message.error(res.message);
           return;
