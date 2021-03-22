@@ -32,15 +32,15 @@ export default new Router({
 
         //订单管理
         {
-          path: 'forder',
+          path: 'om/order',
           component: order
         },
         {
-          path: 'forder/detail/:orderId',
+          path: 'om/order/detail/:orderId',
           component: orderDetail
         },
         {
-          path: 'forder/modify/:orderId',
+          path: 'om/order/modify/:orderId',
           component: modifyOrder
         }
       ]

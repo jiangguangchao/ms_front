@@ -203,12 +203,12 @@
       //查看订单详情
       orderDetail(orderId) {
         console.log("查看订单详情")
-        this.$router.push({path: "forder/detail/" + orderId});
+        this.$router.push({path: "/container/om/order/detail/" + orderId});
       },
 
       modifyOrder(orderId) {
         console.log("点击编辑按钮" + orderId)
-        this.$router.push({path: "forder/modify/" + orderId})
+        this.$router.push({path: "/container/om/order/modify/" + orderId})
       },
 
 
