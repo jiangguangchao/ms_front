@@ -13,10 +13,31 @@ Vue.use(ElementUI)
 Vue.prototype.$http = axios
 Vue.prototype.$echarts = echarts
 axios.defaults.baseURL = "http://localhost:8090"
+axios.defaults.withCredentials = true
 
 
 
 Vue.config.productionTip = false
+
+router.beforeEach((to,from,next) =>{
+  console.log(to)
+  if (to.meta.noAuth == true) {
+    next()
+    return;
+  }
+  console.log("没有noAuth标识，说明需要验证")
+  let loginUserStr = window.sessionStorage.getItem("loginUser")
+  let loginUser = JSON.parse(loginUserStr)
+  console.log("loginUser:" + loginUser)
+  if (loginUser && loginUser.userId) {
+    console.log("验证通过")
+    next();
+    return;
+  }
+  console.log("验证未通过，跳转登录页")
+  next({path:'/login'})
+
+})
 
 /* eslint-disable no-new */
 new Vue({

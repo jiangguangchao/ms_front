@@ -13,15 +13,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: "/login"
+      redirect: "/login",
+      meta: {
+        noAuth: true
+      }
     },
     {
       path: '/login',
-      component: login
+      component: login,
+      meta: {
+        noAuth: true
+      }
     },
     {
       path: '/container',
       component: container,
+
       children: [
 
         //首页

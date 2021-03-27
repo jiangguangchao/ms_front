@@ -43,7 +43,9 @@
 </template>
 
 <script>
-import AsideMenu from "./asideMenu";
+import AsideMenu from "./asideMenu"
+import Utils from '../util/utils.js'
+
 
 export default {
   data() {
@@ -65,14 +67,12 @@ export default {
 
     //查询菜单列表
     async findMenus() {
-      const {data:res} =await this.$http. get("menu")
-      if (res.code != '00') {
-        this.$message.error(res.message)
-        return
-      }
-      this.menus = res.data.menuList;
-      console.log(this.menus)
-
+      Utils.myAxios({
+        method: "get",
+        url: "menu",
+      }).then(result => {
+        this.menus = result.data.menuList
+      })
     }
   },
   created() {

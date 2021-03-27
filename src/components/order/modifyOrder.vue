@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import Utils from '../../util/utils.js'
 export default {
   data() {
     return {
@@ -87,27 +88,27 @@ export default {
     }
   },
   methods: {
-    async findOrderDetail() {
-      const orderId = this.$route.params.orderId;
-      console.log(orderId);
-      const {data:res} = await this.$http.get("order/detail/" + orderId)
 
-      if (res.code != '00') {
-        this.$message.error(res.message)
-        return;
-      }
-      this.order = res.data.orderList[0]
-
+    //查询订单详细信息
+    findOrderDetail() {
+      Utils.myAxios({
+        method: "get",
+        url: "order/detail/" + this.$route.params.orderId,
+      }).then(result => {
+        this.order = result.data.orderList[0]
+      })
     },
 
-    async modifyOrder() {
-      const {data:res} = await this.$http.post("order/modify", this.order)
-      if (res.code != '00') {
-        this.$message.error(res.message)
-        return;
-      }
-      this.$message.success("订单修改成功")
-      this.$router.push({path: '/container/om/order'})
+
+    //修改订单操作
+    modifyOrder() {
+      Utils.myAxios({
+        method: "post",
+        url: "order/modify",
+        data: this.order,
+        successMsg: "订单修改成功",
+        successRouter: "/container/om/order"
+      })
     }
   },
   created() {

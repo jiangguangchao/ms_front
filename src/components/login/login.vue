@@ -25,7 +25,10 @@
 </template>
 
 <script>
+
+import Utils from '../../util/utils.js'
 export default {
+
   data() {
     return {
       loginForm: {
@@ -35,20 +38,19 @@ export default {
     }
   },
   methods: {
-    async toLogin(){
-      const {data:res} =await this.$http. post("login",this.loginForm)
-      if (res != 'success') {
-        this.$message.error(res)
-        return;
-      }
-      this.$message.info("登录成功")
-      window.sessionStorage.setItem("user","admin");
-      this.$router.push("/container/home");
-
+    toLogin(){
+      Utils.myAxios({
+        method: "post",
+        url: "login",
+        data: this.loginForm,
+        successMsg: "登录成功",
+        successRouter: "/container/home",
+      })
     },
     toReset: function () {
       console.log('toReset');
     }
+
   }
 }
 </script>

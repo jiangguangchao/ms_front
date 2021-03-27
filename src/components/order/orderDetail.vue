@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import Utils from '../../util/utils.js'
 export default {
   data() {
     return {
@@ -98,16 +99,13 @@ export default {
     }
   },
   methods: {
-    async findOrderDetail() {
-      const orderId = this.$route.params.orderId;
-      console.log(orderId);
-      const {data:res} = await this.$http.get("order/detail/" + orderId)
-
-      if (res.code != '00') {
-        this.$message.error(res.message)
-        return;
-      }
-      this.orderDetail = res.data.orderList[0]
+    findOrderDetail() {
+      Utils.myAxios({
+        method: "get",
+        url: "order/detail/" + this.$route.params.orderId,
+      }).then(result => {
+        this.orderDetail = result.data.orderList[0]
+      })
 
     },
   },

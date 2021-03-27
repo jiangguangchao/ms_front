@@ -147,6 +147,8 @@
 </template>
 
 <script>
+  import Utils from '../../util/utils.js'
+
   export default {
     data() {
       return {
@@ -176,36 +178,34 @@
     methods: {
 
       //初始化页面订单查询
-      async order(){
-        const {data:res} =await this.$http. get("order",)
-        if (res.code != '00') {
-          this.$message.error(res.message);
-          return;
-        }
-
-        this.tableData = res.data.orderList;
+      order(){
+        Utils.myAxios({
+          method: "get",
+          url: "order",
+        }).then(result => {
+          this.tableData = result.data.orderList
+        })
 
       },
 
       //根据查询条件查询订单
-      async queryOrder() {
-        console.log("查询订单")
-        const {data:res} =await this.$http. post("order/query", this.orderQuery)
-        if (res.code != '00') {
-          this.$message.error(res.message);
-          return;
-        }
-
-        this.tableData = res.data.orderList;
-        this.$message.success("查询完成");
+      queryOrder() {
+        Utils.myAxios({
+          method: "post",
+          url: "order/query",
+          data: this.orderQuery,
+          successMsg: "查询成功",
+        }).then(result => {
+          this.tableData = result.data.orderList
+        })
       },
 
-      //查看订单详情
+      //查看订单按钮
       orderDetail(orderId) {
-        console.log("查看订单详情")
         this.$router.push({path: "/container/om/order/detail/" + orderId});
       },
 
+      //编辑订单按钮
       modifyOrder(orderId) {
         console.log("点击编辑按钮" + orderId)
         this.$router.push({path: "/container/om/order/modify/" + orderId})
@@ -274,6 +274,7 @@
 
     created() {
       this.order();
+
     }
 
   }
