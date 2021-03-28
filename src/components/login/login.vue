@@ -44,7 +44,13 @@ export default {
         url: "login",
         data: this.loginForm,
         successMsg: "登录成功",
-        successRouter: "/container/home",
+      }).then(() => {
+        let loginUser = {
+          userId:this.loginForm.userId
+        }
+        let loginUserStr = JSON.stringify(loginUser)
+        window.sessionStorage.setItem("loginUser", loginUserStr)
+        this.$router.push({path: "/container/home"})
       })
     },
     toReset: function () {
