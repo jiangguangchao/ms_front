@@ -6,6 +6,9 @@ import home from '../components/home/home'
 import order from '../components/order/order'
 import orderDetail from "../components/order/orderDetail";
 import modifyOrder from "../components/order/modifyOrder";
+import user from "../components/system/user/user.vue"
+import userDetail from "../components/system/user/userDetail.vue"
+import userModify from "../components/system/user/userModify.vue"
 
 Vue.use(Router)
 
@@ -49,6 +52,20 @@ export default new Router({
         {
           path: 'om/order/modify/:orderId',
           component: modifyOrder
+        },
+
+        //用户管理
+        {
+          path: 'system/user',
+          component: user
+        },
+        {
+          path: "system/user/detail",
+          component: userDetail
+        },
+        {
+          path: "system/user/modify",
+          component: userModify
         }
       ]
     }
